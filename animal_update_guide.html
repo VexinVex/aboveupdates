@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101510">
+<title>Animal Update — Complete Update Guide</title>
+<style>
+:root{
+  --bg:#0b100d;--panel:#121a15;--panel2:#17221b;--line:#26352b;
+  --text:#edf5ed;--muted:#9bad9e;--green:#a7e3a9;--lime:#d5f2a1;
+  --gold:#f2d18a;--blue:#9bc9e8;--red:#f1a29a;--radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 15% 0%,#1c3222 0,transparent 34%),radial-gradient(ellipse at 100% 15%,#1d2c25 0,transparent 28%),var(--bg);color:var(--text);font:15px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+button{font:inherit}
+a{color:inherit}
+.wrap{width:min(1180px,calc(100% - 36px));margin:auto}
+header{padding:48px 0 28px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 11px;border:1px solid #46634c;border-radius:99px;background:#17251b;color:var(--green);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+h1{font-size:clamp(36px,7vw,68px);line-height:1.02;letter-spacing:-.055em;margin:18px 0 14px;max-width:850px}
+.lead{max-width:760px;color:#b5c5b8;font-size:17px;margin:0}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0 24px}
+.stat{background:linear-gradient(145deg,#1a281e,#111914);border:1px solid var(--line);border-radius:16px;padding:17px}
+.stat strong{display:block;font-size:29px;line-height:1.1;color:var(--lime);letter-spacing:-.04em}
+.stat span{display:block;color:var(--muted);font-size:12px;margin-top:7px}
+.toolbar{position:sticky;top:0;z-index:20;background:#0b100de8;backdrop-filter:blur(14px);border-block:1px solid #233127}
+.nav{display:flex;gap:7px;overflow:auto;padding:11px 0;scrollbar-width:none}
+.nav button{white-space:nowrap;border:1px solid transparent;background:transparent;color:#aab9ad;padding:9px 13px;border-radius:10px;cursor:pointer;font-weight:700;font-size:13px}
+.nav button:hover,.nav button.active{background:#1b2a20;border-color:#3c5942;color:var(--lime)}
+main{padding:28px 0 70px}
+.section{scroll-margin-top:82px;margin:0 0 34px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:15px}
+.kicker{color:var(--green);font-size:11px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+h2{font-size:27px;letter-spacing:-.035em;line-height:1.15;margin:5px 0 0}
+.section-desc{color:var(--muted);margin:6px 0 0;max-width:720px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.card{background:linear-gradient(155deg,#17221b,#111813);border:1px solid var(--line);border-radius:var(--radius);padding:18px;min-width:0}
+.card h3{margin:0 0 7px;font-size:17px;letter-spacing:-.02em}
+.card p{margin:0;color:#b2c0b5}
+.icon{width:38px;height:38px;display:grid;place-items:center;background:#24362a;border:1px solid #3a5740;border-radius:12px;font-size:20px;margin-bottom:13px}
+.tag{display:inline-block;border:1px solid #38513d;background:#1b2b20;color:var(--green);padding:3px 8px;border-radius:99px;font-size:11px;font-weight:800;margin:0 5px 7px 0}
+.tag.gold{color:var(--gold);border-color:#5b4b2c;background:#2b2418}
+.tag.blue{color:var(--blue);border-color:#345064;background:#182630}
+ul,ol{padding-left:20px;margin:10px 0 0;color:#b7c6ba}
+li{margin:5px 0}
+.steps{counter-reset:step;list-style:none;padding:0}
+.steps li{counter-increment:step;display:flex;gap:12px;align-items:flex-start;margin:11px 0}
+.steps li:before{content:counter(step);flex:0 0 26px;height:26px;display:grid;place-items:center;border-radius:9px;background:#263a2b;color:var(--lime);font-weight:900;font-size:12px}
+.callout{border:1px solid #4b5c39;background:linear-gradient(120deg,#202c1d,#151d16);border-radius:16px;padding:17px 19px;color:#c8d6c3}
+.callout strong{color:var(--lime)}
+.callout.warning{border-color:#654c32;background:linear-gradient(120deg,#302418,#1c1712)}
+.callout.warning strong{color:var(--gold)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:15px}
+table{width:100%;border-collapse:collapse;min-width:470px;background:#121a15}
+th,td{text-align:left;padding:12px 15px;border-bottom:1px solid #26352b}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--green);background:#19251c}
+td{color:#c2cec4}tr:last-child td{border-bottom:0}
+td:last-child{font-weight:800;color:#e5f1e5}
+.animal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+.animal{position:relative;overflow:hidden;min-height:200px;padding:20px;background:linear-gradient(145deg,#1c2c20,#121a15);border:1px solid #344638;border-radius:18px}
+.animal .emoji{font-size:35px}
+.animal h3{font-size:21px;margin:7px 0 4px}
+.animal p{color:#b5c3b7;margin:0}
+.animal .pill{display:inline-block;margin-top:12px;padding:5px 9px;border-radius:8px;background:#26382a;color:var(--lime);font-size:11px;font-weight:800}
+.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.check{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);background:#121a15;border-radius:12px;color:#c3d0c5}
+.check input{accent-color:#a7e3a9;margin-top:5px}
+.muted{color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:#839487;font-size:12px}
+.hidden{display:none!important}
+@media(max-width:800px){.hero-stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.wrap{width:min(100% - 24px,1180px)}header{padding-top:32px}.grid,.two,.animal-grid,.checklist{grid-template-columns:1fr}.section-head{display:block}.stat{padding:13px}.stat strong{font-size:25px}}
+@media print{body{background:#fff;color:#111}.toolbar{position:static}.card,.stat,.animal,.callout{break-inside:avoid;background:#fff;color:#111;border-color:#bbb}.card p,.animal p,ul,ol,td,.section-desc{color:#333}.nav{display:none}header{padding-top:15px}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="eyebrow">🌿 Full update guide <span>•</span> Animal Update</div>
+  <h1>More animals.<br><span style="color:var(--lime)">More to build.</span><br>More to collect.</h1>
+  <p class="lead">A reorganized breakdown of the Animal Update: new animal systems, production, machines, economy changes, quality-of-life improvements, fixes, and the developer's follow-up notes.</p>
+  <div class="hero-stats">
+    <div class="stat"><strong>4</strong><span>Wild animal types</span></div>
+    <div class="stat"><strong>16</strong><span>Chicken breeds</span></div>
+    <div class="stat"><strong>21</strong><span>Wool dye colors</span></div>
+    <div class="stat"><strong>8 hrs</strong><span>Offline production cap</span></div>
+  </div>
+</header>
+<div class="toolbar"><nav class="wrap nav" aria-label="Update categories">
+  <button class="active" data-target="overview">Overview</button>
+  <button data-target="animals">Animals</button>
+  <button data-target="production">Production</button>
+  <button data-target="machines">Machines & items</button>
+  <button data-target="economy">Economy</button>
+  <button data-target="quality">Quality of life</button>
+  <button data-target="fixes">Fixes & notes</button>
+</nav></div>
+<main class="wrap">
+<section id="overview" class="section">
+  <div class="section-head"><div><div class="kicker">Start here</div><h2>What this update adds</h2><p class="section-desc">The update is built around four connected areas: catching animals, turning them into ongoing producers, expanding island automation, and making everyday management easier.</p></div></div>
+  <div class="grid">
+    <article class="card"><div class="icon">🐾</div><h3>Animal collecting</h3><p>Catch chickens, sheep, cows and horses in the Ruins with a Lasso. Animals can be named and managed individually.</p></article>
+    <article class="card"><div class="icon">🥚</div><h3>Passive production</h3><p>Chickens produce eggs, cows produce milk, and sheep grow wool. Fed animals can keep producing while you're away.</p></article>
+    <article class="card"><div class="icon">⚙️</div><h3>More automation</h3><p>New machines harvest berries, package crops, collect dropped items and support much larger vending stockpiles.</p></article>
+    <article class="card"><div class="icon">🧭</div><h3>Island management</h3><p>New interface layouts, an island Limits tab, favorites for published islands, and easier chest collection.</p></article>
+    <article class="card"><div class="icon">🌸</div><h3>Wild Bloom weather</h3><p>Wild animals spawn twice as often, more can roam at once, and crops yield 5% more per harvest.</p></article>
+    <article class="card"><div class="icon">🛠️</div><h3>Fixes and tuning</h3><p>Performance improvements, conveyor behavior fixes, a Morten fix, and a temporary Arcane Hopper/shop warning.</p></article>
+  </div>
+</section>
+
+<section id="animals" class="section">
+  <div class="section-head"><div><div class="kicker">New gameplay system</div><h2>Animals & how to get them</h2><p class="section-desc">All four animal types are found roaming around the Ruins. Getting close can make them run, so approach carefully.</p></div></div>
+  <div class="callout"><strong>How catching works:</strong> Visit the Animal Tamer in the Ruins to get a Lasso. Aim at a wild animal, throw the Lasso, then reel it in. The announcement does not specify catch odds, range, or whether different animals require different techniques.</div>
+  <div class="animal-grid" style="margin-top:13px">
+    <article class="animal"><div class="emoji">🐔</div><h3>Chickens</h3><p>Hatch eggs in an Incubator to discover 16 breeds. Keep hens in a Hen House and supplied by a Chicken Feeder to collect eggs.</p><span class="pill">16 breeds • Up to 6 incubators</span></article>
+    <article class="animal"><div class="emoji">🐄</div><h3>Cows</h3><p>Keep cows near a Hay Feeder to collect milk. The developer mentions special milks, but doesn't list their effects.</p><span class="pill">Milk • Special milk types</span></article>
+    <article class="animal"><div class="emoji">🐑</div><h3>Sheep</h3><p>Sheep graze on grass to grow wool. Wool can be dyed in 21 colors and used to make wool blocks or carpet tiles.</p><span class="pill">Wool • 21 colors</span></article>
+    <article class="animal"><div class="emoji">🐎</div><h3>Horses</h3><p>Place a horse in your Mount slot, then press V to ride on PC or hold D-pad Up on console. Coat skins cost coins or Robux.</p><span class="pill">Rideable • Coat skins</span></article>
+  </div>
+  <div class="two" style="margin-top:13px">
+    <article class="card"><div class="icon">🏷️</div><h3>Name & manage animals</h3><p>Every animal can be named. Open its Manage window to see what it needs and when its next egg, milk or wool will be ready.</p></article>
+    <article class="card"><div class="icon">🤠</div><h3>Animal Tamer</h3><p>The Animal Tamer lives in the Ruins. Visit them for a Lasso and animal-related information.</p></article>
+  </div>
+</section>
+
+<section id="production" class="section">
+  <div class="section-head"><div><div class="kicker">Animal care & timing</div><h2>Production and offline progress</h2><p class="section-desc">The key requirement is care: animals need to be fed or have access to the appropriate food source for production.</p></div></div>
+  <div class="grid">
+    <article class="card"><div class="icon">🥚</div><h3>Egg production</h3><p>Hens need a Hen House and Chicken Feeder. Collect their eggs from the Hen House. Fed hens continue laying while you're away.</p></article>
+    <article class="card"><div class="icon">🥛</div><h3>Milk production</h3><p>Keep cows near a Hay Feeder. Watch for special milk varieties; exact effects and production rates weren't included in the announcement.</p></article>
+    <article class="card"><div class="icon">🧶</div><h3>Wool growth</h3><p>Sheep graze grass to grow wool. The announcement doesn't give an exact wool growth timer.</p></article>
+  </div>
+  <div class="callout" style="margin-top:13px"><strong>Offline production rule:</strong> Animals produce at 50% while you're offline, for up to 8 hours, as long as they're fed before you leave.</div>
+  <div class="two" style="margin-top:13px">
+    <article class="card"><h3>What the 8-hour cap means</h3><p>Only the first 8 hours offline count for this production rule. At half speed, that is equivalent to 4 hours of normal-rate production.</p></article>
+    <article class="card"><h3>Before logging off</h3><ol class="steps"><li>Check each animal's needs in its Manage window.</li><li>Make sure it has the required food available.</li><li>Check whether production is nearly ready to collect.</li></ol></article>
+  </div>
+</section>
+
+<section id="machines" class="section">
+  <div class="section-head"><div><div class="kicker">New equipment</div><h2>Machines & buildable items</h2><p class="section-desc">New tools for harvesting, packaging, collecting, selling, displaying gear and building with wool.</p></div></div>
+  <div class="grid">
+    <article class="card"><div class="icon">🍒</div><h3>Berry Harvester</h3><p>Automates berry harvesting. The announcement calls out cooking recipes as a reason it can be useful.</p></article>
+    <article class="card"><div class="icon">🧺</div><h3>Basket Machine</h3><p>Packs tomatoes, onions, carrots or berries into baskets. Each basket sells for more than the crops inside. Also makes haybales from 100 wheat.</p></article>
+    <article class="card"><div class="icon">🌀</div><h3>Arcane Hopper</h3><p>Anything that falls into it goes straight into your backpack. Note the temporary performance issue when using it alongside vending machines.</p></article>
+    <article class="card"><div class="icon">🏪</div><h3>Bulk Vending Machine</h3><p>Sells up to 100,000 of one item, including unique machine, weapon and tool stacks.</p></article>
+    <article class="card"><div class="icon">🛡️</div><h3>Armor Stand</h3><p>Displays a full set of armor so you can show off an equipment setup.</p></article>
+    <article class="card"><div class="icon">🧶</div><h3>Wool blocks & carpets</h3><p>Use wool in all 21 colors to create wool blocks or carpet tiles.</p></article>
+  </div>
+</section>
+
+<section id="economy" class="section">
+  <div class="section-head"><div><div class="kicker">Selling & island capacity</div><h2>Economy changes</h2><p class="section-desc">Several changes affect selling value, machine capacity, and the amount of stock you can manage.</p></div></div>
+  <div class="table-wrap"><table><thead><tr><th>Change</th><th>New value / effect</th></tr></thead><tbody>
+    <tr><td>Standard Vending Machine stock</td><td>Up to 20,000 items</td></tr>
+    <tr><td>Bulk Vending Machine</td><td>Up to 100,000 of one item</td></tr>
+    <tr><td>Vending Machines per island</td><td>Up to 300</td></tr>
+    <tr><td>Arcane item selling value</td><td>20% more</td></tr>
+    <tr><td>Basket Machine</td><td>Baskets sell for more than the crops inside</td></tr>
+    <tr><td>Berry yield</td><td>2–3 per pick, previously 2–4</td></tr>
+    <tr><td>Berry yield reason</td><td>Special milk boosts are being introduced</td></tr>
+    <tr><td>Island Slot #4</td><td>Now available in the shop</td></tr>
+  </tbody></table></div>
+  <p class="muted" style="font-size:13px;margin-top:9px">The update announcement does not give exact basket sale prices, special milk boost values, or the cost of Island Slot #4.</p>
+</section>
+
+<section id="quality" class="section">
+  <div class="section-head"><div><div class="kicker">Interface & convenience</div><h2>Quality-of-life improvements</h2><p class="section-desc">A broad pass over menus, island tools, inventory protection and everyday interactions.</p></div></div>
+  <div class="grid">
+    <article class="card"><div class="icon">✨</div><h3>Redesigned windows</h3><p>Fresh look, new icons and buttons. Achievements, Collections, shops and machines have new layouts.</p></article>
+    <article class="card"><div class="icon">🎒</div><h3>Backpack & Equipment</h3><p>Redesigned Backpack plus a new Equipment page with your character front and center.</p></article>
+    <article class="card"><div class="icon">🏝️</div><h3>Island Limits tab</h3><p>Island Management now has a Limits tab showing every island limit and how to raise it.</p></article>
+    <article class="card"><div class="icon">⭐</div><h3>Published island Favs</h3><p>Star islands you like and find them again in the Favs tab.</p></article>
+    <article class="card"><div class="icon">📖</div><h3>Guest Book</h3><p>Search Guest Book entries and unlike an island you previously liked.</p></article>
+    <article class="card"><div class="icon">🎵</div><h3>Radio playlists</h3><p>Queue up to three songs on your Radio. Radios can also be heard from farther away.</p></article>
+    <article class="card"><div class="icon">🔒</div><h3>Favorite Lock</h3><p>Locked items cannot be sold, dropped or used in crafting, helping protect important items.</p></article>
+    <article class="card"><div class="icon">📦</div><h3>Collect All</h3><p>Use a chest's second interaction key to collect everything without opening it. Prompts can be hidden in Settings.</p></article>
+    <article class="card"><div class="icon">🛠️</div><h3>Flexible tool slots</h3><p>Equip any tool in any equipment slot: select the slot, then choose the tool type from the list.</p></article>
+  </div>
+</section>
+
+<section id="fixes" class="section">
+  <div class="section-head"><div><div class="kicker">Final details</div><h2>Weather, fixes & developer notes</h2><p class="section-desc">The remaining changes and clarifications from the announcement and its follow-up messages.</p></div></div>
+  <div class="two">
+    <article class="card"><div class="icon">🌸</div><h3>Wild Bloom weather</h3><ul><li>Wild animals appear in the Ruins right away.</li><li>Animals spawn twice as often.</li><li>More animals can roam at once.</li><li>Crops yield 5% more per harvest.</li></ul></article>
+    <article class="card"><div class="icon">🔧</div><h3>Bug fixes & performance</h3><ul><li>Items caught against conveyor belt walls now move back into the lane.</li><li>Fixed a way to dodge Morten's slam by stepping out of his grab.</li><li>Performance improved, especially on large islands.</li></ul></article>
+  </div>
+  <div class="callout warning" style="margin-top:13px"><strong>Temporary issue — Arcane Hopper + Vending Machines:</strong> The Hopper is refreshing the vending UI too frequently, causing a performance issue while managing shops. The developer says a fix is coming. Until then, avoid running the Hopper while managing vending machines.</div>
+  <div class="card" style="margin-top:13px"><div class="icon">🌼</div><h3>Flower pickup change</h3><p>Flowers you've placed must now be broken with a pickaxe. Wild flowers and flower offspring can still be collected with F. This prevents accidental pickup of placed flowers and makes it easier to collect offspring.</p></div>
+</section>
+
+<section class="section">
+  <div class="section-head"><div><div class="kicker">Quick reference</div><h2>Update numbers at a glance</h2></div></div>
+  <div class="table-wrap"><table><thead><tr><th>Feature</th><th>Number</th></tr></thead><tbody>
+    <tr><td>Wild animal types</td><td>4</td></tr><tr><td>Chicken breeds</td><td>16</td></tr><tr><td>Maximum Incubators</td><td>6</td></tr><tr><td>Wool colors</td><td>21</td></tr><tr><td>Offline animal production</td><td>50% rate, up to 8 hours</td></tr><tr><td>Wild Bloom animal spawn rate</td><td>2×</td></tr><tr><td>Wild Bloom crop bonus</td><td>+5% per harvest</td></tr><tr><td>Standard vending stock</td><td>20,000</td></tr><tr><td>Bulk vending stock</td><td>100,000</td></tr><tr><td>Vending machines per island</td><td>300</td></tr><tr><td>Arcane item sale bonus</td><td>+20%</td></tr><tr><td>Basket Machine hay recipe</td><td>100 wheat</td></tr><tr><td>Radio queue</td><td>3 songs</td></tr><tr><td>Berry yield</td><td>2–3 per pick</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="section">
+  <div class="section-head"><div><div class="kicker">Personal checklist</div><h2>Things to try after updating</h2><p class="section-desc">Tick these off as you explore the new systems. Your selections stay while this page remains open.</p></div></div>
+  <div class="checklist">
+    <label class="check"><input type="checkbox"> Visit the Animal Tamer and get a Lasso</label>
+    <label class="check"><input type="checkbox"> Catch one of each animal type</label>
+    <label class="check"><input type="checkbox"> Set up a Hen House and Chicken Feeder</label>
+    <label class="check"><input type="checkbox"> Start hatching chicken breeds</label>
+    <label class="check"><input type="checkbox"> Check the Collector's Incubator rewards</label>
+    <label class="check"><input type="checkbox"> Set up a cow and Hay Feeder</label>
+    <label class="check"><input type="checkbox"> Let a sheep graze and collect wool</label>
+    <label class="check"><input type="checkbox"> Equip a horse in the Mount slot</label>
+    <label class="check"><input type="checkbox"> Test the Berry Harvester</label>
+    <label class="check"><input type="checkbox"> Compare crop sales with Basket Machine baskets</label>
+    <label class="check"><input type="checkbox"> Review the new Island Limits tab</label>
+    <label class="check"><input type="checkbox"> Try Favorite Lock and Collect All</label>
+  </div>
+</section>
+</main>
+<footer><div class="wrap">Made as a companion guide from the supplied Animal Update announcement and developer follow-up notes. Unannounced values, timers, drop rates and mechanics are intentionally not guessed.</div></footer>
+<script>
+const buttons=[...document.querySelectorAll('.nav button')];
+buttons.forEach(btn=>btn.addEventListener('click',()=>{
+  buttons.forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(btn.dataset.target).scrollIntoView({behavior:'smooth',block:'start'});
+}));
+const sections=[...document.querySelectorAll('main section[id]')];
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      buttons.forEach(b=>b.classList.toggle('active',b.dataset.target===entry.target.id));
+    }
+  });
+},{rootMargin:'-25% 0px -65% 0px'});
+sections.forEach(section=>observer.observe(section));
+</script>
+</body>
+</html>
